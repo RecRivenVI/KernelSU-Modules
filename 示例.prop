@@ -1,0 +1,134 @@
+# 图形渲染与视觉增强模块
+persist.sys.background_blur_supported=true
+# 启用系统级背景模糊支持（窗口/通知中心等）。关闭此选项可能导致界面模糊效果失效，需重启系统生效。修改后建议执行 `adb reboot`。
+persist.sys.background_blur_status_default=true
+# 默认开启背景模糊功能（需硬件支持）。若硬件不支持可能导致系统卡顿，修改后需清除系统缓存。
+persist.sys.background_blur_mode=0
+# 模糊效果模式：0=自动适配（根据场景动态调整），1=固定强度（可能增加功耗）。修改后需重启UI服务。
+persist.sys.background_blur_version=2
+# 模糊引擎版本：2=第二代混合渲染（平衡性能与效果）。降级版本可能导致兼容性问题。
+persist.sys.advanced_visual_release=3
+# 材质系统版本：3=高级材质3.0（增强光影细节）。旧版本可能不兼容新机型屏幕。
+ro.sf.blurs_are_expensive=0
+# 禁用模糊渲染性能限制（0=不限制GPU资源）。开启后可能增加耗电，游戏场景建议保持默认。
+persist.sys.support_view_smoothcorner=true
+# 启用视图圆角平滑处理（控件/卡片）。关闭后界面元素可能显示锯齿。
+persist.sys.support_window_smoothcorner=true
+# 启用窗口圆角抗锯齿（需GPU支持）。若GPU性能不足可能导致帧率下降。
+ro.miui.backdrop_sampling_enabled=true
+# 启用动态模糊采样（通知/控制中心）。关闭后动态模糊效果消失，需重启系统服务。
+ro.surface_flinger.supports_background_blur=1
+# SurfaceFlinger模糊合成支持。设为0可能导致部分系统动画异常。
+ro.launcher.blur.appLaunch=1
+# 应用启动器模糊效果（0关闭/1开启）。关闭后启动器流畅度可能提升，但视觉效果降低。
+persist.sys.add_blurnoise_supported=true
+# 锁屏文字噪点模糊（防烧屏/视觉增强）。禁用后长期显示静态内容可能引发烧屏风险。
+
+# 动画与性能调度模块
+persist.sys.miui_animator_sched.sched_threads=2
+# 动画渲染双线程模式（主线程+工作线程）。设为1可能降低动画流畅度，但节省CPU资源。
+debug.performance.tuning=1
+# 启用GPU性能调节模式。关闭后GPU可能以默认频率运行，影响图形性能。
+video.accelerate.hw=1
+# 强制硬件视频加速。禁用后视频播放可能卡顿，但兼容性更好。
+debug.sf.hw=1
+# SurfaceFlinger硬件加速开关。关闭后界面渲染可能依赖CPU，导致功耗增加。
+debug.game.video.support=true
+# 游戏视频解码特殊通道。禁用后游戏内视频可能无法硬解。
+debug.game.video.speed=true
+# 游戏视频倍速加载（预解码优化）。关闭后加载时间可能延长，但内存占用减少。
+
+# 影像处理增强模块
+debug.config.media.video.frc.support=true
+# 动态帧率补偿（插帧技术，需显示芯片支持）。旧机型禁用可避免画面撕裂。
+debug.config.media.video.ais.support=true
+# AI超分辨率（低分辨率视频增强）。禁用后视频清晰度下降，但GPU负载降低。
+debug.config.media.video.aie.support=true
+# 影像边缘增强（锐化/轮廓强化）。过度启用可能导致画面噪点增加。
+persist.sys.support_ultra_hdr=true
+# 超高清HDR渲染管线（色深/亮度扩展）。非HDR屏幕启用可能导致色彩失真。
+
+# 音频优化模块
+ro.vendor.audio.game.effect=true
+# 游戏音频场景识别（动态EQ/空间音效）。关闭后音效扁平化，但延迟降低。
+ro.vendor.audio.surround.headphone.only=false
+# 解除虚拟环绕声耳机限制（外放可用）。开启后外放音质可能失真。
+
+# 系统资源管理模块
+persist.sys.prestart.proc=false
+# 禁用应用预启动（减少内存占用）。启用后冷启动速度变慢，但内存占用减少20%。
+persist.sys.usap_pool_enabled=false
+# 关闭USAP预加载池（Android 10+应用启动优化）。启用可能提升多任务速度，但增加后台资源占用。
+persist.sys.dynamic_usap_enabled=false
+# 禁用动态USAP分配。修改需配合USAP池开关使用。
+persist.sys.launch_response_optimization.enable=false
+# 关闭启动响应优化（减少后台进程）。启用后应用启动速度提升，但后台进程数增加。
+persist.sys.app_dexfile_preload.enable=false
+# 禁用Dex文件预提取（首次启动稍慢但节省存储）。修改后首次打开应用延迟增加1-2秒。
+persist.sys.preload.enable=false
+# 全局预加载禁用。启用后系统流畅度提升，但开机时间延长。
+persist.sys.precache.enable=false
+# 系统缓存预生成禁用。修改可能导致常用应用加载变慢。
+persist.sys.prestart.feedback.enable=false
+# 关闭启动反馈数据收集。启用后有助于系统优化，但可能增加隐私风险。
+persist.miui.extm.dm_opt.enable=true
+# 启用dm-verity映射优化（分区校验加速）。禁用后系统安全性提升，但启动时间延长。
+
+# 日志与诊断模块
+init.svc.getdump_hal=stopped
+# 禁用硬件抽象层日志收集。启用后有助于调试硬件问题，但日志文件可能占用大量存储。
+init.svc.vendor.dumpstate-1-1=stopped
+# 关闭厂商系统状态转储。建议仅在系统稳定时禁用。
+init.svc.vendor.ss_ramdump=stopped
+# 禁用RAM转储服务。发生系统崩溃时将无法获取完整日志。
+init.svc.statsd=stopped
+# 关闭系统统计服务。影响电池用量等统计数据的准确性。
+init.svc.tombstoned=stopped
+# 禁用崩溃墓碑记录。发生应用崩溃时将无法生成错误报告。
+init.svc.traced=stopped
+# 关闭系统跟踪守护进程。开发者调试功能将受限。
+init.svc.traced_probes=stopped
+# 停止跟踪探针服务。影响性能分析工具的使用。
+init.svc.mediametrics=stopped
+# 禁用媒体指标收集。流媒体应用可能出现兼容性问题。
+init.svc.incidentd=stopped
+# 关闭异常事件报告。系统级错误可能无法及时上报。
+init.svc.logd=stopped
+# 完全停止日志守护进程。所有日志功能失效，仅限极端优化场景使用。
+ro.logd.size=0
+# 主日志缓冲区大小（0=禁用）。设为非零值可保留部分关键日志。
+ro.logd.size.stats=0
+# 统计日志缓冲区清零。影响系统资源使用统计。
+persist.logd.size.radio=0
+# 基带日志关闭。可能导致信号问题无法排查。
+persist.logd.size.system=0
+# 系统日志缓冲区禁用。关键系统事件将不被记录。
+logd.ready=false
+# 阻止日志系统初始化。需谨慎修改，可能导致系统不稳定。
+persist.sys.offlinelog.bootlog=false
+# 禁止生成启动离线日志。无法通过日志分析启动故障。
+service.offlinelog.bootloader=false
+# 关闭Bootloader日志。刷机失败时难以定位问题。
+persist.sys.qseelogd=false
+# 禁用QSEE安全环境日志。支付类应用可能出现异常。
+
+# 硬件控制模块
+init.svc.android.thermal-hal=stopped
+# 停用温度管理守护进程（可能影响散热）。长期使用可能导致设备过热降频。
+ro.vendor.display.framework_thermal_dimming=false
+# 禁用屏幕热降亮度。高亮度下屏幕温度可能升高。
+ro.vendor.fps.switch.thermal=false
+# 关闭温控帧率限制（游戏不掉帧）。持续高负载可能引发设备过热。
+ro.vendor.thermal.dimming.enable=false
+# 禁用自动亮度热补偿。屏幕在高温环境下可能过亮。
+init.svc.charge_logger=stopped
+# 停止充电日志记录。无法监测充电异常事件。
+init.svc.micharge-hal-1-0=stopped
+# 关闭小米定制充电管理。快充功能可能失效。
+ro.millet.netlink=30
+# 进程通信通道优化（小米进程管理增强）。数值过高可能导致进程调度延迟。
+
+# 兼容性配置
+persist.sys.background_blur_status_default=false
+# 兼容旧版模糊控制（部分机型需要）。新机型启用可能导致渲染异常。
+debug.config.media.video.ais.support=true # 向下兼容视频超分开关。旧版应用调用超分功能时需保持开启。
